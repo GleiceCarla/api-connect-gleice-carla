@@ -32,28 +32,51 @@ A API Connect é uma API REST desenvolvida para realizar o cadastro e gerenciame
 
 ## Endpoints
 
-| Método | Endpoint | Descrição |
-|---|---|---|
-| POST | `/api/usuarios` | Cadastra um novo usuário |
-| GET | `/api/usuarios` | Lista todos os usuários |
-| GET | `/api/usuarios/:id` | Busca um usuário pelo ID |
+| Método | Endpoint | Descrição | Status de sucesso |
+|---|---|---|---|
+| POST | `/api/usuarios` | Cadastra um novo usuário | 201 Created |
+| GET | `/api/usuarios` | Lista todos os usuários | 200 OK |
+| GET | `/api/usuarios/:id` | Busca um usuário pelo ID | 200 OK |
+| PUT | `/api/usuarios/:id` | Atualiza um usuário | 200 OK |
+| DELETE | `/api/usuarios/:id` | Remove um usuário | 204 No Content |
 
 ## Exemplo de cadastro
 
 POST `/api/usuarios`
 
+```json
 {
   "nome": "Gleice Carla",
   "email": "gleicemendescarla@gmail.com"
 }
+```
 
 Em caso de sucesso, a API retorna o status **201 Created**.
 
+## Exemplo de atualização
+
+PUT `/api/usuarios/1`
+
+```json
+{
+  "nome": "Gleice Carla",
+  "email": "gleicemendescarla@gmail.com"
+}
+```
+
+Em caso de sucesso, a API retorna o status **200 OK**.
+
+## Exemplo de remoção
+
+DELETE `/api/usuarios/1`
+
+Em caso de sucesso, a API retorna o status **204 No Content**.
+
 ## Validação
 
-Os campos `nome` e `email` são obrigatórios. Caso algum deles não seja informado, a API retorna **400 Bad Request**.
+Os campos `nome` e `email` são obrigatórios nas operações de cadastro e atualização. Caso algum deles não seja informado, a API retorna **400 Bad Request**.
 
-Ao buscar um ID inexistente, a API retorna **404 Not Found**.
+Ao buscar, atualizar ou remover um ID inexistente, a API retorna **404 Not Found**.
 
 ## Persistência
 
